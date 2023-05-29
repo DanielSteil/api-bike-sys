@@ -1,6 +1,8 @@
 package br.com.lvds.BikeSys.domain.dto;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
