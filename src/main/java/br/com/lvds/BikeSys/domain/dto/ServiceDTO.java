@@ -16,19 +16,12 @@ import javax.persistence.*;
 @Builder(toBuilder = true)
 public class ServiceDTO implements Serializable {
 
-    @Id
-    @Column(nullable = false)
-    @SequenceGenerator(name = "bike_sequence", sequenceName = "bike_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bike_sequence")
     private BigInteger id;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "value")
     private Double value;
 
-    @Column(name = "service_date")
     private LocalDateTime serviceDate;
 
 }

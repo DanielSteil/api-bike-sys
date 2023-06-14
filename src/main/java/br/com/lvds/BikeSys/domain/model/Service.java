@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @Entity
 @Table(name = "services")
 @Data
@@ -18,12 +20,19 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class Service implements Serializable {
 
+    @Id
+    @Column(nullable = false)
+    @SequenceGenerator(name = "service_sequence", sequenceName = "service_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_sequence")
     private BigInteger id;
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "value")
     private Double value;
 
+    @Column(name = "service_date")
     private LocalDateTime serviceDate;
 
 }
