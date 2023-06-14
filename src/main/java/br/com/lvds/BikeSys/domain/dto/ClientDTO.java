@@ -26,4 +26,6 @@ public class ClientDTO implements Serializable {
 
     private LocalDateTime createdAt;
 
+    private Boolean active;
+
 }

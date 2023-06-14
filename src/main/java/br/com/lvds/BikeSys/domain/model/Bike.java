@@ -12,6 +12,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "bikes")
@@ -20,12 +22,19 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class Bike implements Serializable {
 
+    @Id
+    @Column(nullable = false)
+    @SequenceGenerator(name = "bike_sequence", sequenceName = "bike_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bike_sequence")
     private BigInteger id;
 
+    @Column(name = "model")
     private String model;
 
+    @Column(name = "last_service")
     private LocalDateTime lastService;
 
-    private List<Service> service;
+    @Column(name = "services", columnDefinition = "jsonb[]")
+    private List<Service> services;
 
 }

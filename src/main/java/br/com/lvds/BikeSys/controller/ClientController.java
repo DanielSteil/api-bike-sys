@@ -1,11 +1,12 @@
 package br.com.lvds.BikeSys.controller;
 
+import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
+import br.com.lvds.BikeSys.domain.dto.ClientDTO;
+import jakarta.validation.Valid;
 import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.lvds.BikeSys.domain.model.Client;
 import br.com.lvds.BikeSys.domain.response.GenericResponse;
@@ -18,9 +19,18 @@ public class ClientController {
     @Autowired
     ClientService service;
 
+    @PostMapping()
     public ResponseEntity<?> saveClient(@RequestBody Client client) throws Exception {
         return ResponseEntity.ok(
                 new GenericResponse(service.saveClient(client)
+            ));
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> getClients(@Valid ClientDTO filter,
+                                        @Valid PageCriteria criteria) throws Exception {
+        return ResponseEntity.ok(
+                new GenericResponse<>(service.getClient(filter, criteria)
             ));
     }
 

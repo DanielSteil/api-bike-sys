@@ -1,6 +1,7 @@
 package br.com.lvds.BikeSys.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
@@ -19,8 +20,8 @@ public class ClientService {
         return ClientMapper.fromEntity(clientRepository.save(client));
     }
 
-    public ClientDTO getClient(ClientDTO filter, PageCriteria criteria) throws Exception {
-        return null;
+    public Page<ClientDTO> getClient(ClientDTO filter, PageCriteria criteria) throws Exception {
+        return clientRepository.getClients(filter, criteria);
     }
 
 }

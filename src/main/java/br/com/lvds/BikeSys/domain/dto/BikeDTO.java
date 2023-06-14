@@ -22,6 +22,6 @@ public class BikeDTO implements Serializable {
 
     private LocalDateTime lastService;
 
-    private List<Service> service;
+    private List<Service> services;
 
 }
