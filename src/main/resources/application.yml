@@ -1,0 +1,26 @@
+server:
+  servlet:
+    context-path:
+  port: ${PORT:9004}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-44-212-250-48.compute-1.amazonaws.com:5432/d37heo5mbd9ov6
+    username: buzzdfswugmxiy
+    password: 4dcdfee2cc26c97056d38830a85fed70f07fb2cd15e8fda8f1d51b7943d08c37
+    driver-class-name: org.postgresql.Driver
+  servlet:
+    tomcat:
+      initial-size: 2
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: ${HIBERNATE_SHOW_SQL:true}
+    properties:
+      hibernate:
+        generate_statistics: ${HIBERNATE_STATISTICS:false}
+        temp:
+          use_jdbc_metadata_defaults: false
