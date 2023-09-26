@@ -22,7 +22,7 @@ public class ClientDTO implements Serializable {
 
     private String number;
 
-    private List<Bike> bikes;
+    private List<BigInteger> bikes;
 
     private LocalDateTime createdAt;
 
