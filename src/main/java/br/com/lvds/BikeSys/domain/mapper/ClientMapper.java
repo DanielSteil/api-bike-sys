@@ -15,6 +15,8 @@ public class ClientMapper {
                 .number(client.getNumber())
                 .bikes(client.getBikes())
                 .createdAt(client.getCreatedAt())
+                .updatedAt(client.getUpdatedAt())
+                .active(client.getActive())
             .build();
     }    
     
@@ -25,6 +27,8 @@ public class ClientMapper {
                 .number(client.getNumber())
                 .bikes(client.getBikes())
                 .createdAt(client.getCreatedAt())
+                .updatedAt(client.getUpdatedAt())
+                .active(client.getActive())
             .build();
     }
 

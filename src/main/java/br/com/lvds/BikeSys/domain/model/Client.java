@@ -3,6 +3,7 @@ package br.com.lvds.BikeSys.domain.model;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 
@@ -11,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -42,8 +45,21 @@ public class Client implements Serializable {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+    
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @Column(name = "active")
     private Boolean active;
+
+    @PrePersist
+    @PreUpdate
+    private void prePersist() {
+        if(this.createdAt == null) {
+            this.createdAt = LocalDateTime.now(ZoneId.of("Brazil/East"));
+            this.active = Boolean.TRUE;
+        }
+        this.updatedAt = LocalDateTime.now(ZoneId.of("Brazil/East"));
+    }
 
 }
