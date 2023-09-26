@@ -35,17 +35,13 @@ public class Bike implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bike_sequence")
     private BigInteger id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliets")
-    private Client client;
-
     @Column(name = "model")
     private String model;
 
     @Column(name = "last_service")
     private LocalDateTime lastService;
 
-    @Column(name = "services", columnDefinition = "jsonb[]")
-    private List<Service> services;
+    @Column(name = "fk_services_id")
+    private List<BigInteger> services;
 
 }

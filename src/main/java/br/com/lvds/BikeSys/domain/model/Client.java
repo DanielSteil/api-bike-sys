@@ -43,8 +43,8 @@ public class Client implements Serializable {
     @Column(name = "number")
     private String number;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "clients")
-    private List<Bike> bikes;
+    @Column(name = "fk_bikes_id")
+    private List<BigInteger> bikes;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
