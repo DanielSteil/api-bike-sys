@@ -1,15 +1,16 @@
 package br.com.lvds.BikeSys.repository.client;
 
 import br.com.lvds.BikeSys.domain.model.Client;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+
 import org.springframework.data.domain.Page;
 
 import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import org.springframework.data.domain.PageImpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 public class ClientRepositoryImpl implements ClientRepositoryCustom {
 

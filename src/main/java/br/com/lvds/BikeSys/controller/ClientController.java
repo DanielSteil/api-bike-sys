@@ -3,7 +3,7 @@ package br.com.lvds.BikeSys.controller;
 import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import jakarta.validation.Valid;
-import org.hibernate.loader.custom.Return;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
