@@ -25,12 +25,11 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
                 SELECT c.id as id,
                        c.name as name,
                        c.number as number,
-                       b.model as bikes,
+                       (SELECT b.model FROM bikes b WHERE ) as bikes,
                        c.created_at as createdAt,
                        c.updated_at as updatedAt,
                        c.active as active
                 FROM clients c
-                INNER JOIN bikes b ON b.id = c.fk_bikes_id 
                 WHERE c.active = true
                 """);
         if(filter.getName() != null && !filter.getName().equals(""))

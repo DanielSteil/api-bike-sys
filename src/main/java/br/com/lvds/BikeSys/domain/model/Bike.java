@@ -32,6 +32,9 @@ public class Bike implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bike_sequence")
     private BigInteger id;
 
+    @Column(name = "fk_client_id")
+    private BigInteger clientId;
+
     @Column(name = "model")
     private String model;
 
