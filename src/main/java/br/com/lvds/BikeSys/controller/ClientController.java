@@ -22,7 +22,7 @@ public class ClientController {
     @PostMapping()
     public ResponseEntity<?> saveClient(@RequestBody Client client) throws Exception {
         return ResponseEntity.ok(
-                new GenericResponse(service.saveClient(client)
+                new GenericResponse<>(service.saveClient(client)
             ));
     }
 
