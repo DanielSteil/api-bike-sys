@@ -20,7 +20,7 @@ public class ClientService {
         return ClientMapper.fromEntity(clientRepository.save(client));
     }
 
-    public Page<ClientDTO> getClient(ClientDTO filter, PageCriteria criteria) throws Exception {
+    public Page<ClientDTO> getClients(ClientDTO filter, PageCriteria criteria) throws Exception {
         return clientRepository.getClients(filter, criteria);
     }
 

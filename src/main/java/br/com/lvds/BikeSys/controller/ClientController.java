@@ -13,7 +13,7 @@ import br.com.lvds.BikeSys.domain.response.GenericResponse;
 import br.com.lvds.BikeSys.service.ClientService;
 
 @RestController
-@RequestMapping("/api/v1/client")
+@RequestMapping("/api/v1/clients")
 public class ClientController {
     
     @Autowired
@@ -30,7 +30,7 @@ public class ClientController {
     public ResponseEntity<?> getClients(@Valid ClientDTO filter,
                                         @Valid PageCriteria criteria) throws Exception {
         return ResponseEntity.ok(
-                new GenericResponse<>(service.getClient(filter, criteria)
+                new GenericResponse<>(service.getClients(filter, criteria)
             ));
     }
 
