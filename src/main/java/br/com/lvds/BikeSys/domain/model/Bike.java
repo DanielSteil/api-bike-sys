@@ -36,7 +36,7 @@ public class Bike implements Serializable {
     private BigInteger id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliets_id")
+    @JoinColumn(name = "cliets")
     private Client client;
 
     @Column(name = "model")
