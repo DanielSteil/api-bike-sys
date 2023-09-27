@@ -41,7 +41,7 @@ public class Client implements Serializable {
     private String number;
 
     @Column(name = "fk_bikes_id")
-    private List<BigInteger> bikes;
+    private List<BigInteger> bikesId;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

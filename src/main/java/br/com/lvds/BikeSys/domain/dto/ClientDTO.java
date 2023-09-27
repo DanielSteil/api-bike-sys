@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.lvds.BikeSys.domain.model.Bike;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,12 +22,14 @@ public class ClientDTO implements Serializable {
 
     private String number;
 
-    private List<BigInteger> bikes;
+    private List<BigInteger> bikesId;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     private Boolean active;
+
+    private List<Bike> bikes;
 
 }

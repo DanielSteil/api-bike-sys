@@ -19,13 +19,13 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
     EntityManager em;
 
     @Override
-    public Page<ClientDTO> getClients(ClientDTO filter, PageCriteria criteria) {
+    public Page<ClientBikesDTO> getClients(ClientDTO filter, PageCriteria criteria) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
                 SELECT c.id as id,
                        c.name as name,
                        c.number as number,
-                       (SELECT b.model FROM bikes b WHERE b.fk_client_id = c.id) as bikes,
+                       (SELECT json_agg(b) FROM bikes b WHERE b.fk_client_id = c.id) as bikes,
                        c.created_at as createdAt,
                        c.updated_at as updatedAt,
                        c.active as active
