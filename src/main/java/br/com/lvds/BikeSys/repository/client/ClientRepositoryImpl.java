@@ -12,7 +12,6 @@ import br.com.lvds.BikeSys.domain.dto.ClientBikesDTO;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import org.springframework.data.domain.PageImpl;
 
-
 public class ClientRepositoryImpl implements ClientRepositoryCustom {
 
     @PersistenceContext
