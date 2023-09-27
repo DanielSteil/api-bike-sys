@@ -34,7 +34,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         if(filter.getName() != null && !filter.getName().equals(""))
             sql.append("AND c.name LIKE :clientName ");
 
-        Query query = em.createQuery(sql.toString(), ClientBikesDTO.class);
+        Query query = em.createQuery(sql.toString());
         Query queryCount = em.createQuery(sql.toString().replace("SELECT *", "SELECT COUNT(*)"));
 
         if(filter.getName() != null && !filter.getName().equals("")) {
@@ -44,7 +44,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         long totalSize = (long) queryCount.getSingleResult();
         query.setMaxResults(criteria.getPageSize());
         query.setFirstResult(criteria.getPageIndex() * criteria.getPageSize());
-        return new PageImpl<>(query.getResultList(), PageCriteria.getPageRequest(criteria), totalSize);
+        return new PageImpl<ClientBikesDTO>(query.getResultList(), PageCriteria.getPageRequest(criteria), totalSize);
     }
     
 }
