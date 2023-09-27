@@ -34,8 +34,8 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         if(filter.getName() != null && !filter.getName().equals(""))
             sql.append("AND c.name LIKE :clientName ");
 
-        Query query = em.createNativeQuery(sql.toString(), ClientBikesDTO.class);
-        Query queryCount = em.createNativeQuery(sql.toString().replace("SELECT *", "SELECT COUNT(*)"));
+        Query query = em.createQuery(sql.toString(), ClientBikesDTO.class);
+        Query queryCount = em.createQuery(sql.toString().replace("SELECT *", "SELECT COUNT(*)"));
 
         if(filter.getName() != null && !filter.getName().equals("")) {
             query.setParameter("clientName", "'%" + filter.getName() + "%'");
