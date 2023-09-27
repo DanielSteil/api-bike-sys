@@ -21,18 +21,18 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
     public Page<ClientBikesDTO> getClients(ClientDTO filter, PageCriteria criteria) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
-                SELECT c.id as id,
+                SELECT new br.com.lvds.BikeSys.domain.dto.ClientBikesDTO(c.id as id,
                        c.name as name,
                        c.number as number,
-                       (SELECT json_agg(b) FROM bikes b WHERE b.fk_client_id = c.id) as bikes,
-                       c.created_at as createdAt,
-                       c.updated_at as updatedAt,
-                       c.active as active
-                FROM clients c
+                       (SELECT json_agg(b) FROM Bike b WHERE b.clientId = c.id) as bikes,
+                       c.createdAt as createdAt,
+                       c.updatedAt as updatedAt,
+                       c.active as active)
+                FROM Cliet c
                 WHERE c.active = true
                 """);
         if(filter.getName() != null && !filter.getName().equals(""))
-            sql.append("AND c.name ILIKE :clientName ");
+            sql.append("AND c.name LIKE :clientName ");
 
         Query query = em.createNativeQuery(sql.toString(), ClientBikesDTO.class);
         Query queryCount = em.createNativeQuery(sql.toString().replace("SELECT *", "SELECT COUNT(*)"));

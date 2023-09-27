@@ -1,19 +1,37 @@
 package br.com.lvds.BikeSys.domain.dto;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.lvds.BikeSys.domain.model.Bike;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public interface ClientBikesDTO {
+@Data
+@NoArgsConstructor
+@Builder(toBuilder = true)
+public class ClientBikesDTO implements Serializable {
 
-    BigInteger getId();
-    String getName();
-    String getNumber();
-    List<Bike> getBikes();
-    LocalDateTime getCreatedAt();
-    LocalDateTime getUpdatedAt();
-    Boolean getActive();
-    
+    private BigInteger id;
+    private String name;
+    private String number;
+    private List<Bike> bikes;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private Boolean active;
+
+    public ClientBikesDTO(BigInteger id, String name, String number, List<Bike> bikes, LocalDateTime createdAt,
+            LocalDateTime updatedAt, Boolean active) {
+        this.id = id;
+        this.name = name;
+        this.number = number;
+        this.bikes = bikes;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.active = active;
+    }
+
 }
