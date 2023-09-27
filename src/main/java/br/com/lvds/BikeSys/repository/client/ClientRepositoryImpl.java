@@ -28,7 +28,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
                        c.createdAt as createdAt,
                        c.updatedAt as updatedAt,
                        c.active as active)
-                FROM Cliet c
+                FROM Client c
                 WHERE c.active = true
                 """);
         if(filter.getName() != null && !filter.getName().equals(""))
