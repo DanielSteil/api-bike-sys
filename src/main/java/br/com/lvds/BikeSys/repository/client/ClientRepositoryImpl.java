@@ -41,6 +41,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
             query.setParameter("clientName", "'%" + filter.getName() + "%'");
             queryCount.setParameter("clientName", "'%" + filter.getName() + "%'");
         }
+        System.out.println(query.getResultList().toString());
         long totalSize = (long) queryCount.getSingleResult();
         query.setMaxResults(criteria.getPageSize());
         query.setFirstResult(criteria.getPageIndex() * criteria.getPageSize());
