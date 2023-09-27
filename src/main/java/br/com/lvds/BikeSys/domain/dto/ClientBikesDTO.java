@@ -5,6 +5,8 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import br.com.lvds.BikeSys.domain.model.Bike;
 import lombok.Builder;
 import lombok.Data;
@@ -18,12 +20,12 @@ public class ClientBikesDTO implements Serializable {
     private BigInteger id;
     private String name;
     private String number;
-    private List<Bike> bikes;
+    private JSONObject bikes;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean active;
 
-    public ClientBikesDTO(BigInteger id, String name, String number, List<Bike> bikes, LocalDateTime createdAt,
+    public ClientBikesDTO(BigInteger id, String name, String number, JSONObject bikes, LocalDateTime createdAt,
             LocalDateTime updatedAt, Boolean active) {
         this.id = id;
         this.name = name;
