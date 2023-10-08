@@ -1,18 +1,17 @@
 package br.com.lvds.BikeSys.repository.client;
 
+import br.com.lvds.BikeSys.domain.model.Bike;
 import br.com.lvds.BikeSys.domain.model.Client;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
+import java.math.BigInteger;
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-
 import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
-import br.com.lvds.BikeSys.domain.dto.ClientBikesDTO;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
-import org.springframework.data.domain.PageImpl;
+import br.com.lvds.BikeSys.domain.mapper.ClientMapper;
 
 public class ClientRepositoryImpl implements ClientRepositoryCustom {
 
@@ -20,7 +19,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
     EntityManager em;
 
     @Override
-    public List<ClientBikesDTO> getClients(ClientDTO filter, PageCriteria criteria) {
+    public List<ClientDTO> getClients(ClientDTO filter, PageCriteria criteria) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
                 SELECT c.*
@@ -35,7 +34,19 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         if(filter.getName() != null && !filter.getName().equals("")) {
             query.setParameter("clientName", "'%" + filter.getName() + "%'");
         }
-        return query.getResultList();
+        List<ClientDTO> clients = ClientMapper.fromEntities(query.getResultList());
+        for(ClientDTO client : clients) {
+            String clientBike = "";
+            for(BigInteger bikeId : client.getBikesId()) {
+                String sqlBike = "SELECT b.* FROM bikes b WHERE b.id ="+bikeId;
+                Bike bike = (Bike) em.createNativeQuery(sqlBike, Bike.class).getSingleResult();
+                clientBike.concat(bike.getModel()+",");
+            }
+            if(clientBike.contains(","))
+                clientBike.substring(0, clientBike.length()-1);
+            client.setBikes(clientBike);
+        }
+        return clients;
     }
     
 }

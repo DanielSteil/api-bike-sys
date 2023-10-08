@@ -5,6 +5,8 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import br.com.lvds.BikeSys.domain.model.Bike;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +32,7 @@ public class ClientDTO implements Serializable {
 
     private Boolean active;
 
-    private List<Bike> bikes;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String bikes;
 
 }
