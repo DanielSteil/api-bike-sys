@@ -13,7 +13,10 @@ public class ServiceMapper {
                 .id(service.getId())
                 .description(service.getDescription())
                 .value(service.getValue())
+                .bikeId(service.getBikeId())
                 .serviceDate(service.getServiceDate())
+                .createdAt(service.getCreatedAt())
+                .updatedAt(service.getUpdatedAt())
             .build();
     }
 
@@ -22,7 +25,10 @@ public class ServiceMapper {
                 .id(service.getId())
                 .description(service.getDescription())
                 .value(service.getValue())
+                .bikeId(service.getBikeId())
                 .serviceDate(service.getServiceDate())
+                .createdAt(service.getCreatedAt())
+                .updatedAt(service.getUpdatedAt())
             .build();
     }
 
