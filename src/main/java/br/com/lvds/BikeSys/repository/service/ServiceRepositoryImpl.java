@@ -20,7 +20,6 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             FROM Service s
             INNER JOIN Bike b ON b.id = s.fk_bike_id 
             INNER JOIN Client c ON b.id = ANY(c.bikesId)
-            LIMIT 10
         """);
         Query query = em.createQuery(sql.toString(), LastServiceDTO.class);
         return query.getResultList();
