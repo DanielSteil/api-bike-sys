@@ -19,7 +19,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             SELECT new br.com.lvds.BikeSys.domain.dto.LastServiceDTO(c.name, b.model, s.description, s.serviceDate)
             FROM Service s
             INNER JOIN Bike b ON b.id = s.fk_bike_id 
-            INNER JOIN Client c ON c.bikesId::text LIKE b.id::text
+            INNER JOIN Client c ON b.id = ANY(c.bikesId)
             LIMIT 10
         """);
         Query query = em.createQuery(sql.toString(), LastServiceDTO.class);
