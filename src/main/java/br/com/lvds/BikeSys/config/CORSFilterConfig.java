@@ -23,7 +23,6 @@ public class CORSFilterConfig {
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         // Classe responsável pela Configuração do CORS no sistema.
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
 
         // Permitimos requisições de qualquer origem ou cliente.
         config.addAllowedOrigin("*");
