@@ -36,15 +36,17 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         }
         List<ClientDTO> clients = ClientMapper.fromEntities(query.getResultList());
         for(ClientDTO client : clients) {
-            String clientBike = "";
+            StringBuilder clientBikeSb = new StringBuilder();
             for(BigInteger bikeId : client.getBikesId()) {
                 String sqlBike = "SELECT b.* FROM bikes b WHERE b.id ="+bikeId;
                 Bike bike = (Bike) em.createNativeQuery(sqlBike, Bike.class).getSingleResult();
-                clientBike.concat(bike.getModel()+",");
+                System.out.println(bike.toString());
+                clientBikeSb.append(bike.getModel()+",");
             }
-            if(clientBike.contains(","))
+            String clientBike = clientBikeSb.toString();
+            if(clientBike.toString().contains(","))
                 clientBike.substring(0, clientBike.length()-1);
-            client.setBikes(clientBike);
+            client.setBikes(clientBike.toString());
         }
         return clients;
     }
