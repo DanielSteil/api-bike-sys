@@ -44,9 +44,10 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
                 clientBikeSb.append(bike.getModel()+",");
             }
             String clientBike = clientBikeSb.toString();
-            if(clientBike.toString().contains(","))
+            if(clientBike.contains(","))
                 clientBike.substring(0, clientBike.length()-1);
-            client.setBikes(clientBike.toString());
+            System.out.println(clientBike);
+            client.setBikes(clientBike);
         }
         return clients;
     }
