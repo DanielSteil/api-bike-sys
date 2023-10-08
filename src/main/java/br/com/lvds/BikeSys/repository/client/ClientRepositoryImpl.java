@@ -9,7 +9,6 @@ import jakarta.persistence.Query;
 import java.math.BigInteger;
 import java.util.List;
 
-import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import br.com.lvds.BikeSys.domain.mapper.ClientMapper;
 
@@ -19,7 +18,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
     EntityManager em;
 
     @Override
-    public List<ClientDTO> getClients(ClientDTO filter, PageCriteria criteria) {
+    public List<ClientDTO> getClients(ClientDTO filter) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
                 SELECT c.*

@@ -27,11 +27,8 @@ public class ClientController {
     }
 
     @GetMapping()
-    public ResponseEntity<?> getClients(@Valid ClientDTO filter,
-                                        @Valid PageCriteria criteria) throws Exception {
-        return ResponseEntity.ok(
-                new GenericResponse<>(service.getClients(filter, criteria)
-            ));
+    public ResponseEntity<?> getClients(@Valid ClientDTO filter) throws Exception {
+        return ResponseEntity.ok(service.getClients(filter));
     }
 
 }
