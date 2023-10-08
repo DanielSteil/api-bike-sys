@@ -1,11 +1,11 @@
 package br.com.lvds.BikeSys.repository.service;
 
-import org.springframework.data.domain.Page;
+import java.util.List;
 
-import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
-import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
+import br.com.lvds.BikeSys.domain.dto.LastServiceDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
 
@@ -13,15 +13,17 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
     EntityManager em;
 
     @Override
-    public Page<ServiceDTO> buscaUltimosServicos(ServiceDTO filter, PageCriteria criteria) {
+    public List<LastServiceDTO> buscaUltimosServicos() {
         StringBuilder sql = new StringBuilder();
         sql.append("""
-            SELECT new br.com.lvds.BikeSys.domain.dto.LastServiceDTO()
+            SELECT new br.com.lvds.BikeSys.domain.dto.LastServiceDTO(c."name", b.model, s.description, s.serviceDate)
             FROM Service s
-            INNER 
+            INNER JOIN Bike b ON b.id = s.fk_bike_id 
+            INNER JOIN Client c ON b.id = ANY(c.bikesId)
+            LIMIT 10
         """);
-
-        throw new UnsupportedOperationException("Unimplemented method 'buscaUltimosServicos'");
+        Query query = em.createQuery(sql.toString(), LastServiceDTO.class);
+        return query.getResultList();
     }
     
 }
