@@ -40,12 +40,11 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
             for(BigInteger bikeId : client.getBikesId()) {
                 String sqlBike = "SELECT b.* FROM bikes b WHERE b.id ="+bikeId;
                 Bike bike = (Bike) em.createNativeQuery(sqlBike, Bike.class).getSingleResult();
-                System.out.println(bike.toString());
                 clientBikeSb.append(bike.getModel()+",");
             }
             String clientBike = clientBikeSb.toString();
             if(clientBike.contains(","))
-                clientBike.substring(0, clientBike.length()-1);
+                clientBike.substring(0, clientBike.length()-2);
             System.out.println(clientBike);
             client.setBikes(clientBike);
         }
