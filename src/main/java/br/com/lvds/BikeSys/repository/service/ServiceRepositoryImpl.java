@@ -3,6 +3,8 @@ package br.com.lvds.BikeSys.repository.service;
 import java.util.List;
 
 import br.com.lvds.BikeSys.domain.dto.LastServiceDTO;
+import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
+import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import br.com.lvds.BikeSys.domain.model.Service;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -14,7 +16,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
     EntityManager em;
 
     @Override
-    public List<LastServiceDTO> buscaUltimosServicos() {
+    public List<ServiceDTO> buscaUltimosServicos() {
         StringBuilder sql = new StringBuilder();
         sql.append("""
             SELECT s.*
@@ -22,7 +24,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             LIMIT 10
         """);
         Query query = em.createNativeQuery(sql.toString(), Service.class);
-        return query.getResultList();
+        return ServiceMapper.fromEntities(query.getResultList());
     }
     
 }
