@@ -21,7 +21,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             INNER JOIN Bike b ON b.id = s.bikeId 
             INNER JOIN Client c ON b.id = ANY(c.bikesId)
         """);
-        Query query = em.createQuery(sql.toString(), LastServiceDTO.class);
+        Query query = em.createNativeQuery(sql.toString(), LastServiceDTO.class);
         return query.getResultList();
     }
     
