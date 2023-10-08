@@ -37,7 +37,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
         Query query = em.createNativeQuery(sql.toString(), Service.class);
         List<ServiceDTO> lastServices = ServiceMapper.fromEntities(query.getResultList());
         for(ServiceDTO service : lastServices) {
-            String sqlBike = "SELECT b.* FROM bikes WHERE b.id ="+service.getBikeId();
+            String sqlBike = "SELECT b.* FROM bikes b WHERE b.id ="+service.getBikeId();
             Bike bike = (Bike) em.createNativeQuery(sqlBike, Bike.class).getSingleResult();
             String sqlClient = "SELECT c.* FROM clients c WHERE c.id ="+bike.getClientId();
             Client client = (Client) em.createNativeQuery(sqlClient, Client.class).getSingleResult();
