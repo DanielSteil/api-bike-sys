@@ -8,6 +8,6 @@ import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 
 public interface ClientRepositoryCustom {
     
-    public Page<ClientBikesDTO> getClients(ClientDTO filter, PageCriteria criteria);
+    Page<ClientBikesDTO> getClients(ClientDTO filter, PageCriteria criteria);
 
 }

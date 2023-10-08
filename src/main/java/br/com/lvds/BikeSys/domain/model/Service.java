@@ -38,11 +38,16 @@ public class Service implements Serializable {
     @Column(name = "value")
     private Double value;
 
+    @Column(name = "fk_bike_id")
+    private BigInteger bikeId;
+
     @Column(name = "service_date")
     private LocalDateTime serviceDate;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

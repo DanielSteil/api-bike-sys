@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.lvds.BikeSys.domain.dto.BikeDTO;
 import br.com.lvds.BikeSys.domain.model.Bike;
 import br.com.lvds.BikeSys.domain.response.GenericResponse;
 import br.com.lvds.BikeSys.service.BikeService;
