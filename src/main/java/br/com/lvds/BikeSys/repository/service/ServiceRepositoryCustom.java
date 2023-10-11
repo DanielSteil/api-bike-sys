@@ -6,6 +6,6 @@ import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
 
 public interface ServiceRepositoryCustom {
 
-    List<ServiceDTO> buscaUltimosServicos();
-    
+    List<ServiceDTO> buscaUltimosServicos(Long limitSize);
+
 }

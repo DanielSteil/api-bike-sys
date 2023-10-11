@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lvds.BikeSys.service.ServiceService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/services")
@@ -16,8 +17,13 @@ public class ServiceController {
     private ServiceService serviceService;
 
     @GetMapping("/lasts")
-    public ResponseEntity<?> getLastServices() throws Exception {
-        return ResponseEntity.ok(serviceService.getLastServices());
+    public ResponseEntity<?> getLastServices(@Valid Long limit) throws Exception {
+        return ResponseEntity.ok(serviceService.getLastServices(limit));
+    }
+
+    @GetMapping("/cont")
+    public ResponseEntity<?> getCountServices() throws Exception {
+        return ResponseEntity.ok(serviceService.countServices());
     }
 
 }

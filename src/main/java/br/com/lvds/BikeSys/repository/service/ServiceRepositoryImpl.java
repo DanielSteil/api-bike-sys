@@ -17,14 +17,13 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
     EntityManager em;
 
     @Override
-    public List<ServiceDTO> buscaUltimosServicos() {
+    public List<ServiceDTO> buscaUltimosServicos(Long limitSize) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
             SELECT s.*
             FROM services s
             ORDER BY s.service_date DESC
-            LIMIT 10
-        """);
+            LIMIT """+limitSize);
         Query query = em.createNativeQuery(sql.toString(), Service.class);
         List<ServiceDTO> lastServices = ServiceMapper.fromEntities(query.getResultList());
         for(ServiceDTO service : lastServices) {
