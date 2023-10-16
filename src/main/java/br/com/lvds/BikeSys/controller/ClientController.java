@@ -1,6 +1,5 @@
 package br.com.lvds.BikeSys.controller;
 
-import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import jakarta.validation.Valid;
 
