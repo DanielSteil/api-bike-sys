@@ -17,7 +17,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
     public List<ServiceFullDTO> buscaUltimosServicos(Long limitSize) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
-            SELECT s.id, c.name, b.model, s.service_date, 
+            SELECT s.id, c.name, b.model, s.service_date, s.value
             FROM services s
             INNER JOIN bikes b ON b.id = s.fk_bike_id 
             INNER JOIN clients c ON c.id = b.fk_client_id 
