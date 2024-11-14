@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.lvds.BikeSys.domain.dto.ServiceCountDTO;
-import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
+import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
 import br.com.lvds.BikeSys.repository.service.ServiceRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class ServiceService {
     @Autowired
     private ServiceRepository serviceRepository;
 
-    public List<ServiceDTO> getLastServices(Long limitSize) throws Exception {
+    public List<ServiceFullDTO> getLastServices(Long limitSize) throws Exception {
         return serviceRepository.buscaUltimosServicos(limitSize);
     }
 

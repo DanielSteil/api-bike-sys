@@ -3,7 +3,6 @@ package br.com.lvds.BikeSys.domain.model;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,8 +39,5 @@ public class Bike implements Serializable {
 
     @Column(name = "last_service")
     private LocalDateTime lastService;
-
-    @Column(name = "fk_services_id")
-    private List<BigInteger> services;
 
 }

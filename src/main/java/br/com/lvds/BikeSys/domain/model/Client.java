@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
-
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,9 +37,6 @@ public class Client implements Serializable {
 
     @Column(name = "number")
     private String number;
-
-    @Column(name = "fk_bikes_id")
-    private List<BigInteger> bikesId;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

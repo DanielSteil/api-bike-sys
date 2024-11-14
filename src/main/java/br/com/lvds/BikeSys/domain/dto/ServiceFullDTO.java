@@ -3,26 +3,25 @@ package br.com.lvds.BikeSys.domain.dto;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data 
+@Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder(toBuilder = true)
-public class ClientDTO implements Serializable {
+public class ServiceFullDTO implements Serializable {
     
     private BigInteger id;
+ 
+    private String clientName;
 
-    private String name;
+    private String clientBike;
 
-    private String number;
+    private LocalDateTime serviceDate;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private Boolean active;
+    private Double totalAmount;
 
 }

@@ -12,7 +12,6 @@ public class BikeMapper {
         return Bike.builder()
                 .id(bike.getId())
                 .model(bike.getModel())
-                .services(bike.getServices())
                 .lastService(bike.getLastService())
             .build();
     }
@@ -21,7 +20,6 @@ public class BikeMapper {
         return BikeDTO.builder()
                 .id(bike.getId())
                 .model(bike.getModel())
-                .services(bike.getServices())
                 .lastService(bike.getLastService())
             .build();
     }

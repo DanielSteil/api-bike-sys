@@ -3,7 +3,6 @@ package br.com.lvds.BikeSys.domain.dto;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +19,5 @@ public class BikeDTO implements Serializable {
     private String model;
 
     private LocalDateTime lastService;
-
-    private List<BigInteger> services;
 
 }

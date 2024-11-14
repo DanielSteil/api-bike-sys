@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,11 +28,5 @@ public class ServiceDTO implements Serializable {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String clientName;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String clientBike;
 
 }
