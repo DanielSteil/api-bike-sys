@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.lvds.BikeSys.domain.dto.ServiceCountDTO;
+import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
 import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
+import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import br.com.lvds.BikeSys.repository.service.ServiceRepository;
 
 @Service
@@ -15,6 +17,10 @@ public class ServiceService {
     
     @Autowired
     private ServiceRepository serviceRepository;
+
+    public ServiceDTO createService(ServiceDTO service) throws Exception {
+        return ServiceMapper.fromEntity(serviceRepository.save(ServiceMapper.fromDTO(service)));
+    }
 
     public List<ServiceFullDTO> getLastServices(Long limitSize) throws Exception {
         return serviceRepository.buscaUltimosServicos(limitSize);
