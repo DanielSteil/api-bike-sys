@@ -31,6 +31,7 @@ public class ServiceService {
                 .servicesWeek(serviceRepository.countServices(LocalDate.now().minusDays(7), LocalDate.now().plusDays(1)))
                 .servicesMonth(serviceRepository.countServices(LocalDate.now().minusMonths(1), LocalDate.now().plusDays(1)))
                 .totalAmountMonth(serviceRepository.calculateTotalAmountFromDate(LocalDate.now().minusMonths(1)))
+                .dateLastService(serviceRepository.getDateLastService())
             .build();
     }   
 
