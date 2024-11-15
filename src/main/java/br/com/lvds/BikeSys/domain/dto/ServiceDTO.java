@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
+import br.com.lvds.BikeSys.domain.model.Bike;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class ServiceDTO implements Serializable {
 
     private Double value;
 
-    private BigInteger bikeId;
+    private Bike bike;
 
     private LocalDateTime serviceDate;
 

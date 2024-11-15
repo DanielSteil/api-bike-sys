@@ -1,5 +1,6 @@
 package br.com.lvds.BikeSys.service;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
 import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
 import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import br.com.lvds.BikeSys.repository.service.ServiceRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ServiceService {
@@ -21,6 +23,10 @@ public class ServiceService {
     public ServiceDTO createService(ServiceDTO service) throws Exception {
         return ServiceMapper.fromEntity(serviceRepository.save(ServiceMapper.fromDTO(service)));
     }
+
+    public ServiceDTO getServiceById(BigInteger id) {
+        return ServiceMapper.fromEntity(serviceRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Service not found!")));
+    }   
 
     public List<ServiceFullDTO> getLastServices(Long limitSize) throws Exception {
         return serviceRepository.buscaUltimosServicos(limitSize);
@@ -33,6 +39,7 @@ public class ServiceService {
                 .totalAmountMonth(serviceRepository.calculateTotalAmountFromDate(LocalDate.now().minusMonths(1)))
                 .dateLastService(serviceRepository.getDateLastService())
             .build();
-    }   
+    }
+
 
 }
