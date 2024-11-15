@@ -36,7 +36,7 @@ public class Bike implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_client_id", referencedColumnName = "id")
-    private BigInteger clientId;
+    private Client client;
 
     @Column(name = "model")
     private String model;

@@ -11,6 +11,7 @@ public class BikeMapper {
     public static Bike fromDTO(BikeDTO bike) {
         return Bike.builder()
                 .id(bike.getId())
+                .client(bike.getClient())
                 .model(bike.getModel())
                 .lastService(bike.getLastService())
             .build();
@@ -19,6 +20,7 @@ public class BikeMapper {
     public static BikeDTO fromEntity(Bike bike) {
         return BikeDTO.builder()
                 .id(bike.getId())
+                .client(bike.getClient())
                 .model(bike.getModel())
                 .lastService(bike.getLastService())
             .build();
