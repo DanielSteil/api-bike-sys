@@ -20,7 +20,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             FROM services s
             INNER JOIN bikes b ON b.id = s.fk_bike_id 
             INNER JOIN clients c ON c.id = b.fk_client_id 
-            ORDER BY s.service_date DESC
+            ORDER BY s.id DESC
             LIMIT """).append(" "+limitSize);
         Query query = em.createNativeQuery(sql.toString(), "servicesFull");
         return query.getResultList();
