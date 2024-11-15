@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -31,7 +34,8 @@ public class Bike implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bike_sequence")
     private BigInteger id;
 
-    @Column(name = "fk_client_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_client_id", referencedColumnName = "id")
     private BigInteger clientId;
 
     @Column(name = "model")
