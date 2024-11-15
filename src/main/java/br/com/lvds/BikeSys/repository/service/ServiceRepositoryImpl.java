@@ -1,8 +1,10 @@
 package br.com.lvds.BikeSys.repository.service;
 
+import java.security.Provider.Service;
 import java.util.List;
 
-import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
+import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
+import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -13,17 +15,15 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
     EntityManager em;
 
     @Override
-    public List<ServiceFullDTO> buscaUltimosServicos(Long limitSize) {
+    public List<ServiceDTO> buscaUltimosServicos(Long limitSize) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
-            SELECT s.id AS id, c.name AS clientName, b.model AS clientBike, s.service_date AS serviceDate, s.value AS totalAmount
+            SELECT s.*
             FROM services s
-            INNER JOIN bikes b ON b.id = s.fk_bike_id 
-            INNER JOIN clients c ON c.id = b.fk_client_id 
             ORDER BY s.id DESC
             LIMIT """).append(" "+limitSize);
-        Query query = em.createNativeQuery(sql.toString(), "servicesFull");
-        return query.getResultList();
+        Query query = em.createNativeQuery(sql.toString(), Service.class);
+        return ServiceMapper.fromEntities(query.getResultList());
     }
     
 }

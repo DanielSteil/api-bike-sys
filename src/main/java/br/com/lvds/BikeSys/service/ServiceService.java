@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.lvds.BikeSys.domain.dto.ServicesDashboardsDTO;
 import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
-import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
 import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import br.com.lvds.BikeSys.repository.service.ServiceRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -28,7 +27,7 @@ public class ServiceService {
         return ServiceMapper.fromEntity(serviceRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Service not found!")));
     }   
 
-    public List<ServiceFullDTO> getLastServices(Long limitSize) throws Exception {
+    public List<ServiceDTO> getLastServices(Long limitSize) throws Exception {
         return serviceRepository.buscaUltimosServicos(limitSize);
     }
 

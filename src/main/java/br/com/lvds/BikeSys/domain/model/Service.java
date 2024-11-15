@@ -5,11 +5,8 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ColumnResult;
-import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +16,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,18 +27,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder(toBuilder = true)
-@SqlResultSetMapping(
-    name = "servicesFull",
-    classes = @ConstructorResult(targetClass = ServiceFullDTO.class,
-        columns = {
-            @ColumnResult(name="id", type = BigInteger.class),
-            @ColumnResult(name="clientName", type = String.class),
-            @ColumnResult(name="clientBike", type = String.class),
-            @ColumnResult(name="serviceDate", type = LocalDateTime.class),
-            @ColumnResult(name="totalAmount", type = Double.class)
-        }
-    )
-)
 public class Service implements Serializable {
 
     @Id
