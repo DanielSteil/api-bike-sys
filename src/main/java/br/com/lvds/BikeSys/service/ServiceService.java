@@ -26,7 +26,7 @@ public class ServiceService {
         return serviceRepository.buscaUltimosServicos(limitSize);
     }
 
-    public ServicesDashboardsDTO countServices() {
+    public ServicesDashboardsDTO getServicesCardsInfo() throws Exception {
         return ServicesDashboardsDTO.builder()
                 .servicesWeek(serviceRepository.countServices(LocalDate.now().minusDays(7), LocalDate.now().plusDays(1)))
                 .servicesMonth(serviceRepository.countServices(LocalDate.now().minusMonths(1), LocalDate.now().plusDays(1)))

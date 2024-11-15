@@ -29,9 +29,9 @@ public class ServiceController {
         return ResponseEntity.ok(serviceService.getLastServices(limit));
     }
 
-    @GetMapping("/count")
-    public ResponseEntity<?> getCountServices() throws Exception {
-        return ResponseEntity.ok(serviceService.countServices());
+    @GetMapping("/cards")
+    public ResponseEntity<?> getServicesCardsInfo() throws Exception {
+        return ResponseEntity.ok(serviceService.getServicesCardsInfo());
     }
 
 }
