@@ -24,8 +24,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             ORDER BY s.service_date DESC
             LIMIT """).append(" "+limitSize);
         Query query = em.createNativeQuery(sql.toString(), "servicesFull");
-        List<ServiceFullDTO> lastServices = ServiceMapper.fromEntities(query.getResultList());
-        return lastServices;
+        return query.getResultList();
     }
     
 }
