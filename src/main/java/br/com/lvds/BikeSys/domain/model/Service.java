@@ -57,7 +57,6 @@ public class Service implements Serializable {
     @Column(name = "value")
     private Double value;
 
-    @Column(name = "fk_bike_id")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Bike bike;
