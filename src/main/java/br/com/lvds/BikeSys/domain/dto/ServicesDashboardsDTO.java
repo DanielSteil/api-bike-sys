@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder(toBuilder = true)
-public class ServiceCountDTO implements Serializable {
-    
-    private Integer servicesDay;
+public class ServicesDashboardsDTO implements Serializable {
     
     private Integer servicesWeek;
-
+    
     private Integer servicesMonth;
+
+    private Double totalAmountMonth;
 
 }

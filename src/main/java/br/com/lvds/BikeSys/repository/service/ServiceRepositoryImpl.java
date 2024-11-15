@@ -3,7 +3,6 @@ package br.com.lvds.BikeSys.repository.service;
 import java.util.List;
 
 import br.com.lvds.BikeSys.domain.dto.ServiceFullDTO;
-import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;

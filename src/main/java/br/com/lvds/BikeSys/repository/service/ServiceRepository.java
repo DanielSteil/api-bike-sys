@@ -12,13 +12,19 @@ import br.com.lvds.BikeSys.domain.model.Service;
 
 @Repository
 public interface ServiceRepository extends JpaRepository<Service, BigInteger>, ServiceRepositoryCustom {
-    
-    @Query(value = """
-            SELECT COUNT(s.*)
-            FROM services s 
-            WHERE service_date > :startDate
-            AND service_date < :endDate """, nativeQuery = true)
-    Integer countServices(@Param("startDate") LocalDate startDate,
-                          @Param("endDate") LocalDate endDate);
+        
+        @Query(value = """
+                SELECT COUNT(s.*)
+                FROM services s 
+                WHERE service_date > :startDate
+                AND service_date < :endDate """, nativeQuery = true)
+        Integer countServices(@Param("startDate") LocalDate startDate,
+                                @Param("endDate") LocalDate endDate);
+
+        @Query(value = """
+                SELECT SUM(s.value)
+                FROM services s 
+                WHERE service_date > :startDate""", nativeQuery = true)
+        Double calculateTotalAmountFromDate(@Param("startDate") LocalDate startDate);
 
 }
