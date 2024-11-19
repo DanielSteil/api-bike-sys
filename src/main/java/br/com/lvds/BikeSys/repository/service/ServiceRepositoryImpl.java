@@ -44,7 +44,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
         }
         if(filter.getStartDate() != null && filter.getEndDate() != null) {
             sql.append("AND s.service_date >= to_timestamp(:startDate,'YYYY-mm-dd') ");
-            sql.append("AND s.service_date <= to_timestamp(:endDate,'YYYY-mm-dd') ");
+            sql.append("AND s.service_date <= (to_timestamp(:endDate,'YYYY-mm-dd') + interval '23:59:59.9999 hours') ");
         }
 
         Query queryCount = em.createNativeQuery(sql.toString().replace("s.*", "COUNT(s.id)")); 
