@@ -52,8 +52,8 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
         Query query = em.createNativeQuery(sql.toString(), Service.class); 
 
         if(filter.getClientName() != null && !filter.getClientName().isEmpty()) {
-            query.setParameter("clientName", String.format("%%s%", filter.getClientName()));
-            queryCount.setParameter("clientName", String.format("%%s%", filter.getClientName()));
+            query.setParameter("clientName", "%"+filter.getClientName()+"%");
+            queryCount.setParameter("clientName", "%"+filter.getClientName()+"%");
         }
         if(filter.getStartDate() != null && filter.getEndDate() != null) {
             query.setParameter("startDate", filter.getStartDate());
