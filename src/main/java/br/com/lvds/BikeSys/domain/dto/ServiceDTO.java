@@ -38,9 +38,9 @@ public class ServiceDTO implements Serializable {
     private String clientName;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDateTime startDate;
+    private String startDate;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDateTime endDate;
+    private String endDate;
 
 }
