@@ -42,7 +42,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
         if(filter.getClientName() != null && !filter.getClientName().isEmpty()) {
             sql.append("AND c.name ILIKE :clientName ");
         }
-        if(filter.getStartDate() != null && filter.getEndDate() != null) {
+        if(filter.getStartDate() != null && !filter.getStartDate().isEmpty() && filter.getEndDate() != null && !filter.getEndDate().isEmpty()) {
             sql.append("AND s.service_date >= to_timestamp(:startDate,'YYYY-mm-dd') ");
             sql.append("AND s.service_date <= (to_timestamp(:endDate,'YYYY-mm-dd') + interval '23:59:59.9999 hours') ");
         }
@@ -55,7 +55,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             query.setParameter("clientName", "%"+filter.getClientName()+"%");
             queryCount.setParameter("clientName", "%"+filter.getClientName()+"%");
         }
-        if(filter.getStartDate() != null && filter.getEndDate() != null) {
+        if(filter.getStartDate() != null && !filter.getStartDate().isEmpty() && filter.getEndDate() != null && !filter.getEndDate().isEmpty()) {
             query.setParameter("startDate", filter.getStartDate());
             query.setParameter("endDate", filter.getEndDate());
             queryCount.setParameter("startDate", filter.getStartDate());
