@@ -43,8 +43,8 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
             sql.append("AND c.name ILIKE :clientName ");
         }
         if(filter.getStartDate() != null && filter.getEndDate() != null) {
-            sql.append("AND s.service_date >= :startDate ");
-            sql.append("AND s.service_date <= :endDate ");
+            sql.append("AND s.service_date >= to_timestamp(:startDate,'YYYY-mm-dd') ");
+            sql.append("AND s.service_date <= to_timestamp(:endDate,'YYYY-mm-dd') ");
         }
 
         Query queryCount = em.createNativeQuery(sql.toString().replace("s.*", "COUNT(s.id)")); 
