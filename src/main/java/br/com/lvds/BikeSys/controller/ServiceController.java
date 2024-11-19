@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
 import br.com.lvds.BikeSys.service.ServiceService;
 import jakarta.validation.Valid;
@@ -25,6 +26,11 @@ public class ServiceController {
     @PostMapping()
     public ResponseEntity<?> saveService(@RequestBody ServiceDTO serivice) throws Exception {
         return ResponseEntity.ok(serviceService.createService(serivice));
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> fetchServices(@Valid ServiceDTO filter, @Valid PageCriteria criteria) throws Exception {
+        return ResponseEntity.ok(serviceService.fetchServices(filter, criteria));
     }
 
     @GetMapping("/{id}")

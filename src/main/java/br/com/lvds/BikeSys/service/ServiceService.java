@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.lvds.BikeSys.domain.dto.ServicesDashboardsDTO;
+import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
 import br.com.lvds.BikeSys.domain.mapper.ServiceMapper;
 import br.com.lvds.BikeSys.repository.service.ServiceRepository;
@@ -23,12 +25,16 @@ public class ServiceService {
         return ServiceMapper.fromEntity(serviceRepository.save(ServiceMapper.fromDTO(service)));
     }
 
+    public Page<ServiceDTO> fetchServices(ServiceDTO filter, PageCriteria criteria) throws Exception {
+        return serviceRepository.fetchServices(filter, criteria);
+    }
+
     public ServiceDTO getServiceById(BigInteger id) {
         return ServiceMapper.fromEntity(serviceRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Service not found!")));
     }   
 
     public List<ServiceDTO> getLastServices(Long limitSize) throws Exception {
-        return serviceRepository.buscaUltimosServicos(limitSize);
+        return serviceRepository.getLastServices(limitSize);
     }
 
     public ServicesDashboardsDTO getServicesCardsInfo() throws Exception {
