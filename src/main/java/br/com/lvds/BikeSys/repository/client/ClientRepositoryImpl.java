@@ -8,6 +8,7 @@ import jakarta.persistence.Query;
 import java.util.List;
 
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
+import br.com.lvds.BikeSys.domain.mapper.ClientMapper;
 
 public class ClientRepositoryImpl implements ClientRepositoryCustom {
 
@@ -29,8 +30,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         if(filter.getName() != null && !filter.getName().equals("")) 
             query.setParameter("clientName", "'%" + filter.getName() + "%'");
         
-
-        return query.getResultList();
+        return ClientMapper.fromEntities(query.getResultList());
     }
     
 }
