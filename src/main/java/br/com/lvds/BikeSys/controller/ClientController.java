@@ -1,5 +1,6 @@
 package br.com.lvds.BikeSys.controller;
 
+import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import jakarta.validation.Valid;
 
@@ -26,8 +27,8 @@ public class ClientController {
     }
 
     @GetMapping()
-    public ResponseEntity<?> getClients(@Valid ClientDTO filter) throws Exception {
-        return ResponseEntity.ok(service.getClients(filter));
+    public ResponseEntity<?> getClients(@Valid ClientDTO filter, @Valid PageCriteria criteria) throws Exception {
+        return ResponseEntity.ok(service.getClients(filter, criteria));
     }
 
 }

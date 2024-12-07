@@ -5,8 +5,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
+import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import br.com.lvds.BikeSys.domain.mapper.ClientMapper;
 
@@ -16,7 +18,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
     EntityManager em;
 
     @Override
-    public List<ClientDTO> getClients(ClientDTO filter) {
+    public Page<ClientDTO> getClients(ClientDTO filter, PageCriteria criteria) {
         StringBuilder sql = new StringBuilder();
         sql.append("""
                 SELECT c.*
@@ -26,11 +28,18 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
         if(filter.getName() != null && !filter.getName().equals(""))
             sql.append("AND c.name ILIKE :clientName ");
 
+        Query queryCount = em.createNativeQuery(sql.toString().replace("SELECT c.*", "SELECT COUNT(c.id)"));
+        sql.append("ORDER BY c.name ASC");
         Query query = em.createNativeQuery(sql.toString(), Client.class);
-        if(filter.getName() != null && !filter.getName().equals("")) 
+        if(filter.getName() != null && !filter.getName().equals("")) {
             query.setParameter("clientName", "%" + filter.getName() + "%");
-        
-        return ClientMapper.fromEntities(query.getResultList());
+            queryCount.setParameter("clientName", "%" + filter.getName() + "%");
+        }
+
+        Long totalElements = Long.valueOf(queryCount.getFirstResult());
+        query.setMaxResults(criteria.getPageSize());
+        query.setFirstResult(criteria.getPageIndex() * criteria.getPageSize());
+        return new PageImpl<>(ClientMapper.fromEntities(query.getResultList()), PageCriteria.getPageRequest(criteria), totalElements);
     }
     
 }
