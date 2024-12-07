@@ -28,7 +28,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
 
         Query query = em.createNativeQuery(sql.toString(), Client.class);
         if(filter.getName() != null && !filter.getName().equals("")) 
-            query.setParameter("clientName", "'%" + filter.getName() + "%'");
+            query.setParameter("clientName", "%" + filter.getName() + "%");
         
         return ClientMapper.fromEntities(query.getResultList());
     }
