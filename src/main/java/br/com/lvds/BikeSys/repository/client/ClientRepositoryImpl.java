@@ -24,7 +24,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
                 WHERE c.active = true
                 """);
         if(filter.getName() != null && !filter.getName().equals(""))
-            sql.append("AND c.name LIKE :clientName ");
+            sql.append("AND c.name ILIKE :clientName ");
 
         Query query = em.createNativeQuery(sql.toString(), Client.class);
         if(filter.getName() != null && !filter.getName().equals("")) 
