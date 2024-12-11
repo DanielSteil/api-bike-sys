@@ -32,6 +32,6 @@ public interface ServiceRepository extends JpaRepository<Service, BigInteger>, S
                 SELECT s.service_date
                 FROM services s 
                 ORDER BY service_date DESC LIMIT 1""", nativeQuery = true)
-        LocalDateTime getDateLastService();        
+        LocalDate getDateLastService();        
 
 }

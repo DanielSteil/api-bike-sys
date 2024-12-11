@@ -1,6 +1,7 @@
 package br.com.lvds.BikeSys.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +20,6 @@ public class ServicesDashboardsDTO implements Serializable {
 
     private Double totalAmountMonth;
 
-    private LocalDateTime dateLastService;
+    private LocalDate dateLastService;
 
 }

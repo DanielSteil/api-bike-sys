@@ -2,6 +2,7 @@ package br.com.lvds.BikeSys.domain.dto;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,10 +24,10 @@ public class ServiceDTO implements Serializable {
     private String description;
 
     private Double value;
-
+    
     private Bike bike;
 
-    private LocalDateTime serviceDate;
+    private LocalDate serviceDate;
 
     private LocalDateTime createdAt;
 

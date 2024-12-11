@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ServiceDTO;
+import br.com.lvds.BikeSys.domain.response.GenericPageableResponse;
+import br.com.lvds.BikeSys.domain.response.GenericResponse;
 import br.com.lvds.BikeSys.service.ServiceService;
 import jakarta.validation.Valid;
 
@@ -25,22 +27,22 @@ public class ServiceController {
 
     @PostMapping()
     public ResponseEntity<?> saveService(@RequestBody ServiceDTO serivice) throws Exception {
-        return ResponseEntity.ok(serviceService.createService(serivice));
+        return ResponseEntity.ok(new GenericResponse<>(serviceService.createService(serivice)));
     }
 
     @GetMapping()
     public ResponseEntity<?> fetchServices(@Valid ServiceDTO filter, @Valid PageCriteria criteria) throws Exception {
-        return ResponseEntity.ok(serviceService.fetchServices(filter, criteria));
+        return ResponseEntity.ok(new GenericPageableResponse<>(serviceService.fetchServices(filter, criteria)));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getServiceById(@PathVariable("id") BigInteger id) throws Exception {
-        return ResponseEntity.ok(serviceService.getServiceById(id));
+        return ResponseEntity.ok(new GenericResponse<>(serviceService.getServiceById(id)));
     }
 
     @GetMapping("/lasts")
     public ResponseEntity<?> getLastServices(@Valid Long limit) throws Exception {
-        return ResponseEntity.ok(serviceService.getLastServices(limit));
+        return ResponseEntity.ok(new GenericResponse<>(serviceService.getLastServices(limit)));
     }
 
     @GetMapping("/cards")
