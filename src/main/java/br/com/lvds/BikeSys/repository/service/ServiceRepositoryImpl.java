@@ -24,7 +24,7 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
         sql.append("""
             SELECT s.*
             FROM services s
-            ORDER BY s.id DESC
+            ORDER BY s.service_date DESC
             LIMIT """).append(" "+limitSize);
         Query query = em.createNativeQuery(sql.toString(), Service.class);
         return ServiceMapper.fromEntities(query.getResultList());
