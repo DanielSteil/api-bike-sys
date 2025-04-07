@@ -14,6 +14,7 @@ import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
 import br.com.lvds.BikeSys.domain.mapper.ClientMapper;
 import br.com.lvds.BikeSys.domain.model.Bike;
+import br.com.lvds.BikeSys.domain.model.Client;
 import br.com.lvds.BikeSys.repository.BikeRepository;
 import br.com.lvds.BikeSys.repository.client.ClientRepository;
 import br.com.lvds.BikeSys.repository.service.ServiceRepository;
@@ -54,9 +55,9 @@ public class ClientService {
         return client;
     }
 
-    public Object getClientServices(BigInteger clientId, PageCriteria criteria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getClientServices'");
+    public ClientDTO patchClient(BigInteger clientId, ClientDTO clientDto) throws Exception {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found!"));
+        return ClientMapper.fromEntity(clientRepository.save(clientDto.patch(client)));
     }
 
 }

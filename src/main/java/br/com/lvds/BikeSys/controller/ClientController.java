@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +35,11 @@ public class ClientController {
     public ResponseEntity<?> getClients(@Valid ClientDTO filter, @Valid PageCriteria criteria) throws Exception {
         return ResponseEntity.ok(new GenericPageableResponse<>(service.getClients(filter, criteria)));
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> patchClient(@PathVariable("id") BigInteger clientId, @RequestBody ClientDTO clientDto) throws Exception {
+        return ResponseEntity.ok(new GenericResponse<>(service.patchClient(clientId, clientDto)));
+    } 
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getClientById(@PathVariable("id") BigInteger clientId) throws  Exception {

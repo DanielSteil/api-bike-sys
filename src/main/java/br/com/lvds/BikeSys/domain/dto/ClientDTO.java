@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.com.lvds.BikeSys.domain.model.Bike;
+import br.com.lvds.BikeSys.domain.model.Client;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,6 +47,14 @@ public class ClientDTO implements Serializable {
         this.number = number;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Client patch(Client client) {
+        if(this.name != null && !this.name.equals("")) 
+            client.setName(this.name);
+        if(this.number != null && !this.number.equals(""))
+            client.setNumber(this.number);
+        return client;
     }
 
 }
