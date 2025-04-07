@@ -40,8 +40,6 @@ public interface ServiceRepository extends JpaRepository<Service, BigInteger>, S
                 INNER JOIN bikes b ON b.id = s.fk_bike_id
                 INNER JOIN clients c ON c.id = b.fk_client_id
                 WHERE c.id = :clientId
-                OFFSET :offSet
-                LIMIT :pageLimit
                 """, nativeQuery = true)
-        Long getCountByClientId(@Param("clientId") BigInteger clientId, @Param("offSet") Integer offset, @Param("pageLimit") Integer pageLimit);
+        Long getCountByClientId(@Param("clientId") BigInteger clientId);
 }
