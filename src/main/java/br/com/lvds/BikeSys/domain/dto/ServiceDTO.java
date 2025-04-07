@@ -36,6 +36,9 @@ public class ServiceDTO implements Serializable {
     // FILTER FIELDS
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private BigInteger clientId;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String clientName;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)

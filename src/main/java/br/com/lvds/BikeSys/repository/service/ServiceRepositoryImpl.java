@@ -39,6 +39,10 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
                     INNER JOIN clients c ON c.id = b.fk_client_id
                     WHERE 1=1
                 """);
+
+        if(filter.getClientId() != null) {
+            sql.append("AND c.id = :clientId ");
+        }
         if(filter.getClientName() != null && !filter.getClientName().isEmpty()) {
             sql.append("AND c.name ILIKE :clientName ");
         }
@@ -51,6 +55,11 @@ public class ServiceRepositoryImpl implements ServiceRepositoryCustom {
         sql.append("ORDER BY service_date DESC ");
         Query query = em.createNativeQuery(sql.toString(), Service.class); 
 
+        
+        if(filter.getClientId() != null) {
+            query.setParameter("clientId", filter.getClientId());
+            queryCount.setParameter("clientId", filter.getClientId());
+        }
         if(filter.getClientName() != null && !filter.getClientName().isEmpty()) {
             query.setParameter("clientName", "%"+filter.getClientName()+"%");
             queryCount.setParameter("clientName", "%"+filter.getClientName()+"%");

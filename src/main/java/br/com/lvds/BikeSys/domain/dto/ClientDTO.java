@@ -37,6 +37,9 @@ public class ClientDTO implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String bikeModel;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long totalServices;
+
     public ClientDTO(BigInteger id, String name, String number, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;

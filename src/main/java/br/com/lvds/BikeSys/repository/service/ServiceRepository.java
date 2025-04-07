@@ -2,7 +2,6 @@ package br.com.lvds.BikeSys.repository.service;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +33,15 @@ public interface ServiceRepository extends JpaRepository<Service, BigInteger>, S
                 ORDER BY service_date DESC LIMIT 1""", nativeQuery = true)
         LocalDate getDateLastService();        
 
+
+        @Query(value = """
+                SELECT COUNT(s.*)
+                FROM services s
+                INNER JOIN bikes b ON b.id = s.fk_bike_id
+                INNER JOIN clients c ON c.id = b.fk_client_id
+                WHERE c.id = :clientId
+                OFFSET :offSet
+                LIMIT :pageLimit
+                """, nativeQuery = true)
+        Long getCountByClientId(@Param("clientId") BigInteger clientId, @Param("offSet") Integer offset, @Param("pageLimit") Integer pageLimit);
 }
