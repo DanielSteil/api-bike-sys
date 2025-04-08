@@ -32,7 +32,6 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
             sql.append("AND c.name ILIKE :clientName ");
 
         Query queryCount = em.createNativeQuery(sql.toString().replace("SELECT c.id AS id, c.name AS name, c.number AS number, c.created_at AS createdAt, c.updated_at AS updatedAt", "SELECT COUNT(c.id)"));
-        sql.append("GROUP BY c.id ");
         sql.append("ORDER BY c.name ASC ");
         Query query = em.createNativeQuery(sql.toString(), "full_client");
         if(filter.getName() != null && !filter.getName().equals("")) {
@@ -40,7 +39,7 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
             queryCount.setParameter("clientName", "%" + filter.getName() + "%");
         }
 
-        Long totalElements = Long.valueOf(queryCount.getFirstResult());
+        Long totalElements = Long.valueOf(queryCount.getSingleResult().toString());
         query.setMaxResults(criteria.getPageSize());
         query.setFirstResult(criteria.getPageIndex() * criteria.getPageSize());
         List<ClientDTO> clients = query.getResultList();

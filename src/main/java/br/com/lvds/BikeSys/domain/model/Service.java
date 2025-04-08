@@ -46,9 +46,8 @@ public class Service implements Serializable {
     @Column(name = "value")
     private Double value;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_bike_id", referencedColumnName = "id")
-    private Bike bike;
+    @Column(name = "fk_bike_id")
+    private BigInteger bikeId;
 
     @Column(name = "service_date")
     private LocalDate serviceDate;

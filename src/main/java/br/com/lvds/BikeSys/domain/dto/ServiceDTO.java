@@ -25,7 +25,7 @@ public class ServiceDTO implements Serializable {
 
     private Double value;
     
-    private Bike bike;
+    private BigInteger bikeId;
 
     private LocalDate serviceDate;
 

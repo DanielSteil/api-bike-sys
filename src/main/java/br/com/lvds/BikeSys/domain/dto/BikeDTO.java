@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
-import br.com.lvds.BikeSys.domain.model.Client;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +16,7 @@ public class BikeDTO implements Serializable {
     
     private BigInteger id;
 
-    private Client client;
+    private BigInteger clientId;
 
     private String model;
 
