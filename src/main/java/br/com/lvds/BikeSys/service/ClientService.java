@@ -36,7 +36,7 @@ public class ClientService {
         ClientDTO client = ClientMapper.fromEntity(clientRepository.save(ClientMapper.fromDTO(clientDTO)));
         if(clientDTO.getBikeModel() != null && !clientDTO.getBikeModel().isEmpty()) {
             Bike bike = bikeRepository.save(Bike.builder()
-                                    .client(ClientMapper.fromDTO(client))
+                                    .clientId(client.getId())
                                     .model(clientDTO.getBikeModel()).build());
             List<Bike> clientBikes = new ArrayList<>();
             clientBikes.add(bike);
