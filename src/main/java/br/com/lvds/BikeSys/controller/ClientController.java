@@ -31,6 +31,11 @@ public class ClientController {
         return ResponseEntity.ok(new GenericResponse<>(service.saveClient(client)));
     }
 
+    @GetMapping("/dashboards")
+    public ResponseEntity<?> getDashboardsInfos() throws Exception {
+        return ResponseEntity.ok(new GenericResponse<>(service.getClientDashboardsInfos()));
+    }
+
     @GetMapping()
     public ResponseEntity<?> getClients(@Valid ClientDTO filter, @Valid PageCriteria criteria) throws Exception {
         return ResponseEntity.ok(new GenericPageableResponse<>(service.getClients(filter, criteria)));

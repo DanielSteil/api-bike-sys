@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.lvds.BikeSys.domain.criteria.PageCriteria;
 import br.com.lvds.BikeSys.domain.dto.ClientDTO;
+import br.com.lvds.BikeSys.domain.dto.ClientDashboardsDTO;
 import br.com.lvds.BikeSys.domain.mapper.ClientMapper;
 import br.com.lvds.BikeSys.domain.model.Bike;
 import br.com.lvds.BikeSys.domain.model.Client;
@@ -46,6 +47,13 @@ public class ClientService {
 
     public Page<ClientDTO> getClients(ClientDTO filter, PageCriteria criteria) throws Exception {
         return clientRepository.getClients(filter, criteria);
+    }
+
+    public ClientDashboardsDTO getClientDashboardsInfos() throws Exception {
+        return ClientDashboardsDTO.builder()
+                .totalClients(clientRepository.getTotalClients())
+                .totalBikes(bikeRepository.getTotalBikes())
+            .build();
     }
 
     public ClientDTO getClientById(BigInteger clientId) {
