@@ -49,6 +49,9 @@ public class Service implements Serializable {
     @Column(name = "fk_bike_id")
     private BigInteger bikeId;
 
+    @Column(name = "status")
+    private Short status;
+
     @Column(name = "service_date")
     private LocalDate serviceDate;
 
@@ -65,6 +68,10 @@ public class Service implements Serializable {
             this.createdAt = LocalDateTime.now(ZoneId.of("Brazil/East"));
         }
         this.updatedAt = LocalDateTime.now(ZoneId.of("Brazil/East"));
+    }
+
+    public static class Status {
+        Short PENDING = 0;
     }
 
 }

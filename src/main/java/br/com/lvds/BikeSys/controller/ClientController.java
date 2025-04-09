@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ import jakarta.validation.Valid;
 public class ClientController {
     
     @Autowired
-    ClientService service;
+    private ClientService service;
 
     @PostMapping()
     public ResponseEntity<?> saveClient(@RequestBody ClientDTO client) throws Exception {
@@ -49,6 +50,11 @@ public class ClientController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getClientById(@PathVariable("id") BigInteger clientId) throws  Exception {
         return ResponseEntity.ok(new GenericResponse<>(service.getClientById(clientId)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteClient(@PathVariable("id") BigInteger clientId) throws Exception {
+        return ResponseEntity.ok(new GenericResponse<>(service.deleteClient(clientId)));
     }
 
 }

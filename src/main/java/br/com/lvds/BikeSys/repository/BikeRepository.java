@@ -13,7 +13,7 @@ import br.com.lvds.BikeSys.domain.model.Bike;
 @Repository
 public interface BikeRepository extends JpaRepository<Bike, BigInteger> {
  
-    @Query(value = "SELECT COUNT(b.id) FROM bikes b", nativeQuery = true)
+    @Query(value = "SELECT COUNT(b.id) FROM bikes b INNER JOIN clients c ON c.id = b.fk_client_id WHERE c.active = TRUE", nativeQuery = true)
     Long getTotalBikes();
 
     @Query(value = "SELECT b.* FROM bikes b WHERE b.fk_client_id = :clientId", nativeQuery = true)

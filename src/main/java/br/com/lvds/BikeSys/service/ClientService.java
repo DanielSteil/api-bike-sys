@@ -68,4 +68,10 @@ public class ClientService {
         return ClientMapper.fromEntity(clientRepository.save(clientDto.patch(client)));
     }
 
+    public String deleteClient(BigInteger clientId) throws Exception {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found!"));
+        clientRepository.save(client.builder().active(false).build());
+        return "Client removed!";
+    }
+
 }

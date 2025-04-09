@@ -11,7 +11,7 @@ import br.com.lvds.BikeSys.domain.model.Client;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, BigInteger>, ClientRepositoryCustom {
     
-    @Query(value = "SELECT COUNT(c.id) FROM clients c", nativeQuery=true)
+    @Query(value = "SELECT COUNT(c.id) FROM clients c WHERE c.active = TRUE", nativeQuery=true)
     Long getTotalClients();    
 
 }
